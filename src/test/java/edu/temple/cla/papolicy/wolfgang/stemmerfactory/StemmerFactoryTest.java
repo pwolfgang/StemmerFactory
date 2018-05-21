@@ -31,10 +31,10 @@
  */
 package edu.temple.cla.papolicy.wolfgang.stemmerfactory;
 
+import edu.temple.cla.papolicy.wolfgang.stemmer.Stemmer;
 import edu.temple.cla.papolicy.wolfgang.stemmer.StemmerFactory;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import org.tartarus.snowball.javastemmers.SnowballStemmer;
 
 /**
  *
@@ -46,9 +46,15 @@ public class StemmerFactoryTest {
     }
 
     @Test
-    public void testGetInstance() {
-        SnowballStemmer stemmer = StemmerFactory.getInstance(null);
-        assertEquals(org.tartarus.snowball.ext.porterStemmer.class, stemmer.getClass());
+    public void nullReturnsANoOpStemmer() {
+        Stemmer stemmer = StemmerFactory.getInstance(null);
+        assertEquals("foobar", stemmer.apply("foobar"));
+    }
+    
+    @Test
+    public void porterStemmer() {
+        Stemmer stemmer = StemmerFactory.getInstance("porter");
+        assertEquals("abandon", stemmer.apply("abandoned"));
     }
     
 }
