@@ -29,7 +29,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package edu.temple.cla.papolicy.wolfgang.stemmerfactory;
+package edu.temple.cla.papolicy.wolfgang.stemmer;
 import org.tartarus.snowball.javastemmers.SnowballStemmer;
 
 /**
@@ -46,7 +46,7 @@ public class StemmerFactory {
      * @param language The target language.
      * @return An instance of the stemmer class.
      */
-    public static SnowballStemmer getInstance(String language) {
+    public static Stemmer getInstance(String language) {
         if (null == language) language = "porter";
         else switch (language) {
             case "false":
@@ -61,11 +61,19 @@ public class StemmerFactory {
             default:
                 break;
         }
+        SnowballStemmer snowballStemmer;
         try {
-            return (SnowballStemmer)Class.forName(PACKAGE_NAME + language + "Stemmer").newInstance();
+            snowballStemmer = 
+                    (SnowballStemmer)Class.forName(PACKAGE_NAME + language + "Stemmer").newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
-            return new org.tartarus.snowball.ext.noStemmer();
+            snowballStemmer = new org.tartarus.snowball.ext.noStemmer();
         }
+        final SnowballStemmer stemmer = snowballStemmer;
+        return (String s) -> {
+            stemmer.setCurrent(s);
+            stemmer.stem();
+            return stemmer.getCurrent().trim();
+        };  
     }
 
 }

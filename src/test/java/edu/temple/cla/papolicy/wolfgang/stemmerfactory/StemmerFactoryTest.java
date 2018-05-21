@@ -31,6 +31,7 @@
  */
 package edu.temple.cla.papolicy.wolfgang.stemmerfactory;
 
+import edu.temple.cla.papolicy.wolfgang.stemmer.StemmerFactory;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.tartarus.snowball.javastemmers.SnowballStemmer;
