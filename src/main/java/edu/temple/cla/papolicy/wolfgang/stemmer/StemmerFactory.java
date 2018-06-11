@@ -47,7 +47,7 @@ public class StemmerFactory {
      * @return An instance of the stemmer class.
      */
     public static Stemmer getInstance(String language) {
-        if (null == language) language = "porter";
+        if (null == language || language.isEmpty()) language = "porter";
         else switch (language) {
             case "false":
                 language = "no";
