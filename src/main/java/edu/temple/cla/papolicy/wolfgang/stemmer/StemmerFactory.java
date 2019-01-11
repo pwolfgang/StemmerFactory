@@ -44,7 +44,8 @@ public class StemmerFactory {
      * Porter stemmer for English. If the language is "false" or "0", then
      * no stemming is performed.
      * @param language The target language.
-     * @return An instance of the stemmer class.
+     * @return A Stemmer (Function<String, String>) instance that calls the
+     * selected stemming algorithm.
      */
     public static Stemmer getInstance(String language) {
         if (null == language || language.isEmpty()) language = "porter";
