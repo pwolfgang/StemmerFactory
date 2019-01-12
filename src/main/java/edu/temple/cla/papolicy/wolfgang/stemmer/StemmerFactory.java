@@ -43,6 +43,12 @@ public class StemmerFactory {
      * Get an instance of the appropriate stemmer class. The default is the
      * Porter stemmer for English. If the language is "false" or "0", then
      * no stemming is performed.
+     * The following languages are supported: Arabic, Danish, Dutch, English,
+     * Finnish, French, German, Hungarian, Indonesian, Irish, Italian, Nepali,
+     * Norwegian, Portuguese, Romanian, Russian, Panish, Swedish, Tamil, and 
+     * Turkish. A language of "no" results in a stemmer that makes no changes 
+     * to the input. A language of "porter" selects the original Porter stemmer, 
+     * which is the default.
      * @param language The target language.
      * @return A Stemmer (Function<String, String>) instance that calls the
      * selected stemming algorithm.
