@@ -50,7 +50,7 @@ public class StemmerFactory {
      * to the input. A language of "porter" selects the original Porter stemmer, 
      * which is the default.
      * @param language The target language.
-     * @return A Stemmer (Function<String, String>) instance that calls the
+     * @return A Stemmer (Function&lt;String, String&gt;) instance that calls the
      * selected stemming algorithm.
      */
     public static Stemmer getInstance(String language) {
